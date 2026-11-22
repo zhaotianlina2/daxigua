@@ -1,0 +1,92 @@
+/* ===== 合成大西瓜 · 超果冻版 ===== */
+#daxigua-root{
+  position:relative;
+  width:min(100%,440px);
+  aspect-ratio:375/640;
+  margin:0 auto;
+  border-radius:26px;
+  overflow:hidden;
+  background:#fff3e2;
+  isolation:isolate;
+  font-family:'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',system-ui,sans-serif;
+  user-select:none;-webkit-user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  box-shadow:0 30px 70px -30px rgba(190,90,25,.5);
+}
+:where(#daxigua-root) *{box-sizing:border-box;margin:0;padding:0}
+button{font-family:inherit}
+
+.dax-stage{position:absolute;inset:0}
+#dax-game{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}
+
+/* 玻璃质感内阴影，做出"果冻缸"的深度 */
+.dax-glass{position:absolute;inset:0;pointer-events:none;z-index:4;
+  box-shadow:inset 0 12px 28px -18px rgba(120,50,10,.35),
+             inset 0 -16px 34px -20px rgba(150,70,20,.32),
+             inset 12px 0 24px -18px rgba(120,50,10,.18),
+             inset -12px 0 24px -18px rgba(120,50,10,.18)}
+
+/* ---------- HUD ---------- */
+.dax-hud{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:flex-start;
+  padding:.85em .9em 0;pointer-events:none;z-index:6}
+.dax-pill{background:rgba(255,255,255,.8);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+  border-radius:1.2em;box-shadow:0 .2em .8em rgba(200,100,30,.2);padding:.45em 1em .55em;min-width:6.4em}
+.dax-scorelabel{font-size:.7em;font-weight:700;color:#b06a2c;letter-spacing:.2em}
+.dax-score{font-size:1.9em;font-weight:900;color:#ff5a3c;line-height:1.08;font-variant-numeric:tabular-nums}
+.dax-best{font-size:.68em;font-weight:700;color:#c08a55;margin-top:.1em;font-variant-numeric:tabular-nums}
+.dax-right{display:flex;flex-direction:column;align-items:flex-end;gap:.5em}
+.dax-nextbox{display:flex;align-items:center;gap:.4em;background:rgba(255,255,255,.8);
+  backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);border-radius:999px;
+  padding:.28em .55em .28em .95em;box-shadow:0 .2em .8em rgba(200,100,30,.2)}
+.dax-nextlabel{font-size:.7em;font-weight:700;color:#b06a2c;letter-spacing:.1em}
+#dax-next{width:2.6em;height:2.6em;display:block}
+.dax-iconbtns{display:flex;gap:.45em;pointer-events:auto}
+.dax-iconbtn{width:2.3em;height:2.3em;border:none;border-radius:999px;background:rgba(255,255,255,.88);
+  box-shadow:0 .18em .6em rgba(200,100,30,.28);font-size:1em;display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:transform .12s}
+.dax-iconbtn:active{transform:scale(.85)}
+
+/* ---------- 覆盖层 ---------- */
+.dax-overlay{position:absolute;inset:0;z-index:10;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:1.05em;text-align:center;padding:2em;
+  background:linear-gradient(180deg,rgba(255,205,150,.55),rgba(255,128,88,.58));
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.dax-hidden{display:none!important}
+
+.dax-logo{width:6.6em;height:6.6em;filter:drop-shadow(0 .5em .8em rgba(200,80,20,.35));animation:daxFloat 3s ease-in-out infinite}
+.dax-title{font-size:3em;font-weight:900;color:#fff;letter-spacing:.08em;transform:rotate(-2deg);
+  text-shadow:0 .07em 0 #ff7a3d,0 .17em .55em rgba(230,90,30,.6)}
+.dax-sub{font-size:.85em;font-weight:700;color:#8a4a20;background:rgba(255,255,255,.72);padding:.32em 1.2em;border-radius:999px}
+.dax-btnplay{border:none;cursor:pointer;font-size:1.5em;font-weight:800;color:#fff;letter-spacing:.28em;text-indent:.28em;
+  white-space:nowrap;padding:.62em 1.7em;border-radius:999px;background:linear-gradient(180deg,#ffb14e,#ff6a2e);
+  box-shadow:0 .28em 0 #d64e15,0 .8em 1.6em rgba(255,110,40,.45);transition:transform .1s,box-shadow .1s}
+.dax-btnplay:active{transform:translateY(.22em);box-shadow:0 .06em 0 #d64e15,0 .4em .9em rgba(255,110,40,.4)}
+.dax-tips{font-size:.78em;color:#9c5a28;font-weight:600;line-height:1.7}
+.dax-bestline{font-size:.85em;font-weight:800;color:#c96a1f;font-variant-numeric:tabular-nums}
+
+/* 结算卡片 */
+.dax-card{background:rgba(255,252,244,.95);border-radius:1.6em;padding:1.7em 2em 1.9em;width:min(82%,24em);
+  box-shadow:0 1.4em 3em -.8em rgba(180,70,20,.5);display:flex;flex-direction:column;align-items:center;gap:.55em;
+  animation:daxPopIn .45s cubic-bezier(.2,1.6,.4,1)}
+.dax-overtitle{font-size:1.05em;font-weight:800;color:#b06a2c;letter-spacing:.34em;text-indent:.34em}
+.dax-final{font-size:3.1em;font-weight:900;color:#ff5a3c;line-height:1.15;font-variant-numeric:tabular-nums}
+.dax-newbest{font-size:.95em;font-weight:900;color:#ff8a1e;animation:daxBounce 1s ease-in-out infinite}
+.dax-overbest{font-size:.8em;font-weight:700;color:#c08a55;font-variant-numeric:tabular-nums}
+.dax-overfruit{font-size:.8em;font-weight:700;color:#8a6a4a;background:rgba(255,190,120,.25);padding:.32em 1.1em;border-radius:999px}
+.dax-btnshare{border:none;cursor:pointer;font-size:.95em;font-weight:700;color:#c05a17;background:rgba(255,170,90,.22);
+  padding:.55em 1.4em;border-radius:999px;transition:transform .12s;margin-top:.2em}
+.dax-btnshare:active{transform:scale(.93)}
+
+/* toast */
+.dax-toast{position:absolute;left:50%;bottom:7%;transform:translateX(-50%);background:rgba(60,35,15,.9);color:#fff8ee;
+  font-size:.85em;font-weight:700;padding:.5em 1.4em;border-radius:999px;opacity:0;transition:opacity .25s;z-index:20;
+  pointer-events:none;white-space:nowrap}
+.dax-toast.dax-show{opacity:1}
+
+/* 得分跳动 */
+.dax-popscore{animation:daxScorePulse .3s ease}
+
+@keyframes daxFloat{0%,100%{transform:translateY(0) rotate(-4deg)}50%{transform:translateY(-.5em) rotate(3deg)}}
+@keyframes daxBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.16)}}
+@keyframes daxPopIn{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes daxScorePulse{0%{transform:scale(1)}40%{transform:scale(1.22)}100%{transform:scale(1)}}

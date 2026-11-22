@@ -1,0 +1,56 @@
+<style>
+__CSS__
+</style>
+<div id="daxigua-root">
+  <div class="dax-stage">
+    <canvas id="dax-game"></canvas>
+    <div class="dax-glass"></div>
+
+    <div class="dax-hud">
+      <div class="dax-pill">
+        <div class="dax-scorelabel">得分</div>
+        <div class="dax-score" id="dax-score">0</div>
+        <div class="dax-best" id="dax-best">最高 0</div>
+      </div>
+      <div class="dax-right">
+        <div class="dax-nextbox">
+          <span class="dax-nextlabel">下一个</span>
+          <canvas id="dax-next" width="52" height="52"></canvas>
+        </div>
+        <div class="dax-iconbtns">
+          <button class="dax-iconbtn" id="dax-btn-mute" type="button" aria-label="音效开关">🔊</button>
+          <button class="dax-iconbtn" id="dax-btn-restart" type="button" aria-label="重新开始">↻</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dax-overlay" id="dax-start">
+      <canvas class="dax-logo" id="dax-logo" width="144" height="144"></canvas>
+      <div class="dax-title">合成大西瓜</div>
+      <div class="dax-sub">超果冻版 · 连击加倍 · 手感上头</div>
+      <button class="dax-btnplay" id="dax-btn-start" type="button">开始游戏</button>
+      <div class="dax-tips">点击 / 拖动放下水果<br>两个相同的水果碰到一起就会合成</div>
+      <div class="dax-bestline" id="dax-startbest">历史最高：0</div>
+    </div>
+
+    <div class="dax-overlay dax-hidden" id="dax-over">
+      <div class="dax-card">
+        <div class="dax-overtitle">游戏结束</div>
+        <div class="dax-final" id="dax-final">0</div>
+        <div class="dax-newbest dax-hidden" id="dax-newbest">🎉 新纪录！</div>
+        <div class="dax-overbest" id="dax-overbest">历史最高 0</div>
+        <div class="dax-overfruit" id="dax-overfruit">本局最大合成：樱桃</div>
+        <button class="dax-btnplay" id="dax-btn-again" type="button">再来一局</button>
+        <button class="dax-btnshare" id="dax-btn-share" type="button">📋 复制战绩，去炫耀</button>
+      </div>
+    </div>
+
+    <div class="dax-toast" id="dax-toast">已复制</div>
+  </div>
+</div>
+<script>
+__MATTER__
+</script>
+<script>
+__GAME__
+</script>
